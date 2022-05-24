@@ -38,7 +38,7 @@ public class ReadmeBot {
     private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(3);
 
     public static final String prefix = "dev.";
-    public static final String version = "pre-alpha 0.0.1";
+    public static final String version = "pre-alpha 0.0.2";
 
     public static final ReadManager manager = new ReadManager();
 
