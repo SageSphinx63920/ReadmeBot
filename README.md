@@ -2,6 +2,7 @@
 
 Im currently working on the Readme and other stuff like a website or general informations! Please give me some time ^^
 
+*Little Information: Im not pushing that much to the repo rn, because the bot is huge development, so i must test everything! I'll try to push every time a new function is working or when any exist functions gets an update!*
 
 ---
 
