@@ -16,7 +16,6 @@ import java.util.concurrent.FutureTask;
 public class LiteSQL {
 
     private static Connection connection;
-
     private static Statement statement;
 
     public static void connect() {
@@ -89,6 +88,11 @@ public class LiteSQL {
         return null;
     }
 
+
+    public static boolean hasEnabled(String function){
+
+        return false;
+    }
 
 
 }

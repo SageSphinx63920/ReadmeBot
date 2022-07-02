@@ -1,6 +1,9 @@
 package de.sage.ready;
 
+import de.sage.ready.commans.CreateCommand;
 import de.sage.ready.commans.TestCommand;
+import de.sage.ready.events.ActivityChangeEvent;
+import de.sage.ready.events.CreateModalEvent;
 import de.sage.ready.events.readyListener;
 import de.sage.ready.managment.ReadManager;
 import de.sage.ready.sql.LiteSQL;
@@ -10,6 +13,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -39,6 +43,7 @@ public class ReadmeBot {
 
     public static final String prefix = "dev.";
     public static final String version = "pre-alpha 0.0.2";
+    public static final String footer = "Readme made by SageSphinx63920#7195 with <3 | Version: " + version;
 
     public static final ReadManager manager = new ReadManager();
 
@@ -72,6 +77,12 @@ public class ReadmeBot {
         builder.addEventListeners(new readyListener());
         builder.addEventListeners(new TestCommand());
 
+        //Slash Commands
+        builder.addEventListeners(new CreateCommand());
+
+        //Modal Events
+        builder.addEventListeners(new CreateModalEvent());
+
         //Start JDA with Shards
         try {
             shardManager = builder.setShardsTotal(shardCount).build();
@@ -84,18 +95,23 @@ public class ReadmeBot {
 
     public static void registerSlashCommands(@NotNull JDA shard, boolean testing) {
 
-        CommandListUpdateAction clua = shard.updateCommands();
+        //CommandListUpdateAction clua = shard.updateCommands();;
+        for(Guild g : shard.getGuilds()){
+            CommandListUpdateAction clua = g.updateCommands();
 
-        //Message Menu
-        clua.addCommands(Commands.message("Convert to readme"));
+            //Message Menu
+            clua.addCommands(Commands.message("Convert to readme"));
 
-        //User Menu
+            //User Menu
 
-        //Slash Commands
-        clua.addCommands(Commands.slash("test", "Command for intern testing"));
-        clua.addCommands(Commands.slash("create", "Creates a new readme message").addOptions(new OptionData(OptionType.CHANNEL, "channel", "The channel the message should be send in", true).setChannelTypes(ChannelType.NEWS, ChannelType.TEXT), new OptionData(OptionType.CHANNEL, "log-channel", "The channel the statistics should be send in", true), new OptionData(OptionType.STRING, "mode", "The message mode", true).addChoices(new Command.Choice("webhook","webhook"), new Command.Choice("bot", "bot"))));
+            //Slash Commands
+            clua.addCommands(Commands.slash("test", "Command for intern testing"));
+            clua.addCommands(Commands.slash("create", "Creates a new readme message").addOptions(new OptionData(OptionType.CHANNEL, "channel", "The channel the message should be send in", true).setChannelTypes(ChannelType.NEWS, ChannelType.TEXT), new OptionData(OptionType.CHANNEL, "log-channel", "The channel the statistics should be send in", true).setChannelTypes(ChannelType.NEWS, ChannelType.TEXT), new OptionData(OptionType.STRING, "mode", "The message mode", true).addChoices(new Command.Choice("webhook","webhook"), new Command.Choice("bot", "bot"))));
 
-        clua.queue();
+            clua.queue();
+        }
+
+
         System.out.println("Commands loaded!");
 
     }

@@ -19,7 +19,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @SpringBootApplication
 @Controller
 public class WebServer {
@@ -38,11 +37,9 @@ public class WebServer {
         app.setDefaultProperties(getProperties());
 
        ConfigurableApplicationContext config = app.run(args);
-
-
     }
 
-    @RequestMapping(value="read/news", method=RequestMethod.GET)
+    @RequestMapping(value="/api/v1/read/news", method=RequestMethod.GET)
     public void getDiscordRequest(HttpServletResponse httpR, @RequestParam String id) throws IOException {
 
         System.out.println("Someone requested picture with id: " + id);

@@ -12,6 +12,9 @@ target/
 .idea/discord.xml
 .idea/uiDesigner.xml
 
+### Libraries ###
+lib/*
+
 *.iws
 *.iml
 *.ipr
