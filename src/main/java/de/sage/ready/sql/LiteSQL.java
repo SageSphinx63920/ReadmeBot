@@ -13,6 +13,7 @@ import java.util.concurrent.FutureTask;
  *  Copyright (c) 2019 - 2022 by SageSphinx63920 to present. All rights reserved
  *
  */
+
 public class LiteSQL {
 
     private static Connection connection;

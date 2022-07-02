@@ -76,6 +76,7 @@ public class ReadmeBot {
         // Event Listener
         builder.addEventListeners(new readyListener());
         builder.addEventListeners(new TestCommand());
+        builder.addEventListeners(new ActivityChangeEvent());
 
         //Slash Commands
         builder.addEventListeners(new CreateCommand());
